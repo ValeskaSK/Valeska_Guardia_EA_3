@@ -1,0 +1,103 @@
+import datetime 
+fecha_hoy = datetime.date.today()
+def mostrar_escenario(escenario):
+    print("\n\t\t\t***** ESCENARIO *****\n")
+    for fila_inicio in range(0, 50, 10):
+        fila = ""
+        for columna_actual in range(10):
+            
+            asiento = escenario[fila_inicio + columna_actual]
+            if len(asiento) ==1:
+                asiento =' ' + asiento
+            fila += f"{asiento}\t"
+        print(fila)
+    print("")
+
+def comprar_entradas(escenario):
+    precios ={precio: 100000 for precio in range(1,21)}
+    precios.update ({precio: 50000 for precio in range (21,31)})
+    precios.update ({precio: 10000 for precio in range (31,51)})
+
+    while True:
+        try:
+            cantidad =int(input('Ingrese la cantidad de entradas a comprar 1 o 2: '))
+            if 1  <= cantidad <=2:
+                break
+            else:
+                print('Cantidad invalida por favor vuelva a intentar\n')
+                            
+        except ValueError:
+            print('Por favor ingrese un numero valido.')    
+    
+    for indice_asiento in range(cantidad):
+        asiento =asiento_elegido (escenario,indice_asiento)
+        run = input('Por favor ingrese el RUN para el asiento a comprar, sin puntos ni guión: ')
+        escenario [asiento - 1] = 'X'
+        precio =precios[asiento]
+        compradores.append((asiento, precio, run))
+        
+        print(f'El RUN {run} ha realizado la  compra del asiento {asiento} por $ {precio} \n')
+        
+def asiento_elegido (escenario, indice_asiento):
+    while True:
+        try:
+            mostrar_escenario(escenario)
+            asiento =int(input(f'Seleccione el número de asiento a comprar {indice_asiento +1}: '))
+            if 1<= asiento <=50 and  escenario[asiento -1] != 'X':
+                    return asiento
+            print("Asiento elegido no disponible. ")
+        except ValueError:
+            print('Por favor ingrese un numero valido. ')  
+
+
+
+def total_ventas():
+    total_ventas =sum(venta[1]for venta in compradores)
+    print(f'El total de las ventas es :$ {total_ventas}\n' )
+
+def run_asistentes():
+    print('Los RUN que compraron entradas: ')
+    for venta in compradores:
+        lista_run.append(venta[2])
+        lista_run
+        print (lista_rut)
+
+
+def menu():
+    while True:
+        print('\nBienvenido a la productora  “Sanchez Producciones”,  ¿Qué deseas realizar?\n ')
+        print('1- Comprar entradas concierto Michael Jackson ')
+        print('2- Ver ubicaciones disponibles')
+        print('3- Ver listado de asistentes ')
+        print('4- Mostrar ganancias totales ')
+        print("5- Salir\n")
+        
+        try:
+            opcion_menu =int(input('Seleccione una opción: '))
+            if 1 <= opcion_menu <=5:
+                return opcion_menu
+            else:
+                print('Opción inválida, intente otra vez \n')
+        except ValueError:
+            print('Por favor, ingrese un número válido\n ')
+
+escenario =[str(num_asiento) for num_asiento in range (1, 51)]
+compradores = []
+
+
+while True:
+    opcion_menu = menu()
+
+    match opcion_menu:
+
+        case 1 :
+            comprar_entradas(escenario)
+        case 2:
+            mostrar_escenario(escenario)
+        case 3:
+             run_asistentes()
+        case 4:
+            total_ventas()
+        case 5:
+            print((f'Ha seleccionado salir. Adiós. Atte Valeska Guardia {fecha_hoy}'))  
+            break
