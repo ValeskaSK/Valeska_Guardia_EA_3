@@ -56,11 +56,8 @@ def total_ventas():
     print(f'El total de las ventas es :$ {total_ventas}\n' )
 
 def run_asistentes():
-    print('Los RUN que compraron entradas: ')
-    for venta in compradores:
-        lista_run.append(venta[2])
-        lista_run
-        print (lista_rut)
+    lista_run =[venta[2]for venta in compradores]
+    print(f'Los RUN que compraron entradas son : {sorted(lista_run)}')
 
 
 def menu():
@@ -83,7 +80,7 @@ def menu():
 
 escenario =[str(num_asiento) for num_asiento in range (1, 51)]
 compradores = []
-
+lista_run = []
 
 while True:
     opcion_menu = menu()
